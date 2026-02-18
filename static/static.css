@@ -68,6 +68,10 @@ nav a { margin-right: 1rem; }
   width: 100%;
   max-width: 520px;
 }
+.signup-card .card-body,
+.login-card .card-body {
+  padding-bottom: 1.5rem;
+}
 
 /* Labels above AND centered over each textbox */
 .signup-card .form-label {
@@ -87,6 +91,44 @@ nav a { margin-right: 1rem; }
   display: block;
   width: 20%;                      /* your "shorten by 80%" */
   min-width: 140px;                /* keeps it usable on smaller screens */
-  margin: 0.75rem auto 0;          /* centers it */
+  margin: 0.75rem auto 0.5rem;     /* centers it + adds bottom space */
 }
 
+/* Login page scoped styles (match signup) */
+.login-container {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 1rem;
+  max-width: none;
+}
+.login-card {
+  width: 100%;
+  max-width: 520px;
+}
+.login-actions {
+  width: 100%;
+  max-width: 520px;
+  margin-top: 1rem;
+  text-align: center;
+}
+.login-card .form-label {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0.35rem;
+}
+.login-card .form-control {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+}
+.signup-btn {
+  display: block;
+  width: 20%;
+  min-width: 140px;
+  margin: 0.75rem auto 0.5rem;
+}

@@ -1,33 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="row justify-content-center">
-    <div class="col-md-5">
-      <div class="card">
-        <div class="card-body">
-          <h2 class="card-title">Log in</h2>
+  <div class="signup-container">
+    <div class="card signup-card">
+      <div class="card-body">
+        <h2 class="card-title mb-3 text-center">Log In</h2>
 
-          {% if form.errors %}
-            <div class="alert alert-danger">Please correct the errors below.</div>
-          {% endif %}
+        {% if form.errors %}
+          <div class="alert alert-danger">Please correct the errors below.</div>
+        {% endif %}
 
-          <form method="post" action="{% url 'users:login' %}">
-            {% csrf_token %}
-            <div class="mb-3">
-              <label for="id_username" class="form-label">Username</label>
-              {{ form.username }}
-            </div>
-            <div class="mb-3">
-              <label for="id_password" class="form-label">Password</label>
-              {{ form.password }}
-            </div>
-            <button class="btn btn-primary" type="submit">Log in</button>
-          </form>
+        <form method="post" action="{% url 'users:login' %}">
+          {% csrf_token %}
 
-          <hr>
-          <p class="mb-0">Don't have an account? <a href="{% url 'users:signup' %}">Sign up</a></p>
+          <div class="text-box">
+            <label for="id_username" class="form-label">Username</label>
+            <input id="id_username" name="username" class="form-control" value="{{ form.username.value|default:'' }}">
+          </div>
+
+          <div class="text-box">
+            <label for="id_password" class="form-label">Password</label>
+            <input id="id_password" name="password" type="password" class="form-control">
+          </div>
+
+          <button class="btn btn-primary signup-btn" type="submit">Log In</button>
+        </form>
+        <div class="text-center mt-3">
+          <p class="mb-2">Don't have an account?</p>
+          <a href="{% url 'users:signup' %}" class="btn btn-primary signup-btn">Sign Up</a>
         </div>
       </div>
-    </div>
+  </div>
   </div>
 {% endblock %}
