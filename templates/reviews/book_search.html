@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="book-search-shell">
+    <h1 class="book-search-title">
+      {% if request.GET.q %}
+        Books matching '{{ request.GET.q|upper }}'
+      {% else %}
+        Book search results
+      {% endif %}
+    </h1>
+
+    {% if books %}
+      <div class="book-search-results">
+        {% for book in books %}
+          <div class="book-search-item">
+            <div class="book-search-media">
+              {% if book.image %}
+                <a href="{% url 'reviews:book_detail' book.pk %}">
+                  <img src="{{ book.image.url }}" alt="Cover for {{ book.title }}" class="book-search-thumb">
+                </a>
+              {% else %}
+                <a href="{% url 'reviews:book_detail' book.pk %}" class="book-search-thumb book-search-no-image">No cover</a>
+              {% endif %}
+            </div>
+            <div class="book-search-content">
+              <a href="{% url 'reviews:book_detail' book.pk %}" class="book-search-book-title">{{ book.title }}</a>
+              <p class="text-muted small mb-2">{{ book.reviews_count|default:0 }} reviews</p>
+              <p class="mb-0">
+                Average score:
+                {% if book.reviews_count %}
+                  <span class="rating-stars">
+                    {% if book.avg_rating >= 0.5 %}&#9733;{% else %}&#9734;{% endif %}
+                    {% if book.avg_rating >= 1.5 %}&#9733;{% else %}&#9734;{% endif %}
+                    {% if book.avg_rating >= 2.5 %}&#9733;{% else %}&#9734;{% endif %}
+                    {% if book.avg_rating >= 3.5 %}&#9733;{% else %}&#9734;{% endif %}
+                    {% if book.avg_rating >= 4.5 %}&#9733;{% else %}&#9734;{% endif %}
+                  </span>
+                {% else %}
+                  <span class="text-muted">No score yet</span>
+                {% endif %}
+              </p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>No books match your search.</p>
+    {% endif %}
+
+    <div class="book-search-cta">
+      {% if user.is_authenticated %}
+        <a class="btn btn-outline-secondary" href="{% url 'reviews:create_book' %}">Create a new book</a>
+      {% else %}
+        <p><a href="{% url 'users:login' %}">Log in</a> or <a href="{% url 'users:signup' %}">sign up</a> to create a new book</p>
+      {% endif %}
+    </div>
+  </div>
+
+{% endblock %}

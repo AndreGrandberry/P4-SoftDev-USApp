@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="book-page-shell">
+    <h1 class="book-page-title">{{ book.title }}</h1>
+    <div class="row mb-4 align-items-start">
+      <div class="col-md-3">
+        {% if image_exists %}
+          <img src="{{ book.image.url }}" alt="Cover for {{ book.title }}" class="img-fluid rounded book-cover">
+        {% else %}
+          <div class="book-cover-placeholder">No cover image</div>
+        {% endif %}
+      </div>
+      <div class="col-md-9">
+        <p>{{ book.description }}</p>
+        <div class="book-page-action">
+        {% if user.is_authenticated %}
+          {% if user_has_review %}
+            <p class="mb-0">You already posted a review for this book. <a href="{% url 'reviews:edit_review' book.pk user_review.pk %}">Edit</a></p>
+          {% else %}
+            <a class="btn btn-outline-secondary" href="{% url 'reviews:create_review' book.pk %}">Post a review for this book</a>
+          {% endif %}
+        {% else %}
+          <p><a href="{% url 'users:login' %}">Log in</a> or <a href="{% url 'users:signup' %}">sign up</a> to post a review for this book.</p>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <h2 class="h5">Reviews</h2>
+
+    {% if reviews %}
+      <div class="book-page-reviews">
+        {% for review in reviews %}
+          {% include 'reviews/review_card.html' with as_border=True %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="alert alert-info">No reviews yet.</div>
+    {% endif %}
+  </div>
+
+{% endblock %}

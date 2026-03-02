@@ -1,0 +1,179 @@
+{% comment %}Reusable profile body for both own profile and other users' profile.{% endcomment %}
+{% if subject_user == request.user %}
+  <div class="own-profile-shell">
+    <h1 class="own-profile-title">My profile</h1>
+
+    <div class="own-profile-box own-profile-info">
+      <div>
+        Name:
+        {% if subject_user.first_name or subject_user.last_name %}
+          {{ subject_user.full_name }}
+        {% else %}
+          {{ subject_user.username }}
+        {% endif %}
+      </div>
+      <div>Email: {{ subject_user.email|default:"No email set" }}</div>
+    </div>
+
+    <h2 class="own-profile-section-title">Following ({{ following_count }})</h2>
+    <div class="own-profile-box">
+      {% if following_list %}
+        {% for u in following_list %}
+          <div class="own-profile-line">
+            <a href="{% url 'users:profile_detail' u.pk %}">
+              {% if u.first_name or u.last_name %}
+                {{ u.full_name }}
+              {% else %}
+                {{ u.username }}
+              {% endif %}
+            </a>
+            <form method="post" action="{% url 'users:follow' u.pk %}" class="d-inline">{% csrf_token %}
+              <button type="submit" class="own-inline-action">(unfollow)</button>
+            </form>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="text-muted">You are not following anyone yet.</div>
+      {% endif %}
+    </div>
+
+    <h2 class="own-profile-section-title">Followers ({{ followers_count }})</h2>
+    <div class="own-profile-box">
+      {% if followers_list %}
+        {% for u in followers_list %}
+          <div class="own-profile-line">
+            <a href="{% url 'users:profile_detail' u.pk %}">
+              {% if u.first_name or u.last_name %}
+                {{ u.full_name }}
+              {% else %}
+                {{ u.username }}
+              {% endif %}
+            </a>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="text-muted">No one is following you yet.</div>
+      {% endif %}
+    </div>
+
+    <h2 class="own-profile-section-title">Search for users</h2>
+    <form method="get" action="{% url 'users:search' %}" class="own-search-form mb-3">
+      <input type="search" name="q" placeholder="Type in the name of the user you are looking for..." class="form-control">
+    </form>
+
+    <h2 class="own-profile-section-title">My reviews</h2>
+    {% if reviews %}
+      <div class="own-profile-reviews">
+        {% for review in reviews %}
+          {% include 'reviews/review_card.html' %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="alert alert-info">You haven't posted any reviews yet.</div>
+    {% endif %}
+  </div>
+{% else %}
+  <div class="other-profile-shell">
+    <h1 class="other-profile-title">
+      {% if subject_user.first_name %}
+        {{ subject_user.first_name }}'s profile
+      {% else %}
+        {{ subject_user.username }}'s profile
+      {% endif %}
+    </h1>
+
+    <div class="other-profile-box">
+      Name:
+      {% if subject_user.first_name or subject_user.last_name %}
+        {{ subject_user.full_name }}
+      {% else %}
+        {{ subject_user.username }}
+      {% endif %}
+    </div>
+
+    <div class="other-profile-follow">
+      <form method="post" action="{% url 'users:follow' subject_user.pk %}">{% csrf_token %}
+        <button class="btn btn-outline-secondary" type="submit">
+          {% if is_following %}
+            Stop following
+          {% else %}
+            Start following
+          {% endif %}
+          {% if subject_user.first_name %}
+            {{ subject_user.first_name }}
+          {% else %}
+            {{ subject_user.username }}
+          {% endif %}
+        </button>
+      </form>
+    </div>
+
+    <h2 class="other-profile-section-title">
+      {% if subject_user.first_name %}
+        {{ subject_user.first_name }} follows
+      {% else %}
+        Following
+      {% endif %}
+    </h2>
+    <div class="other-profile-box">
+      {% if following_list %}
+        {% for u in following_list %}
+          <div>
+            <a href="{% url 'users:profile_detail' u.pk %}">
+              {% if u.first_name or u.last_name %}
+                {{ u.full_name }}
+              {% else %}
+                {{ u.username }}
+              {% endif %}
+            </a>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="text-muted">No users followed yet.</div>
+      {% endif %}
+    </div>
+
+    <h2 class="other-profile-section-title">
+      {% if subject_user.first_name %}
+        {{ subject_user.first_name }} is followed by
+      {% else %}
+        Followers
+      {% endif %}
+    </h2>
+    <div class="other-profile-box">
+      {% if followers_list %}
+        {% for u in followers_list %}
+          <div>
+            <a href="{% url 'users:profile_detail' u.pk %}">
+              {% if u.first_name or u.last_name %}
+                {{ u.full_name }}
+              {% else %}
+                {{ u.username }}
+              {% endif %}
+            </a>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="text-muted">No followers yet.</div>
+      {% endif %}
+    </div>
+
+    <h2 class="other-profile-section-title">
+      {% if subject_user.first_name %}
+        {{ subject_user.first_name }}'s reviews
+      {% else %}
+        {{ subject_user.username }}'s reviews
+      {% endif %}
+    </h2>
+
+    {% if reviews %}
+      <div class="other-profile-reviews">
+        {% for review in reviews %}
+          {% include 'reviews/review_card.html' %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="alert alert-info">No reviews yet.</div>
+    {% endif %}
+  </div>
+{% endif %}

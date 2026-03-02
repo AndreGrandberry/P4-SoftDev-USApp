@@ -1,0 +1,225 @@
+[
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$320000$nVmRBiu5Saaa2HnB4eYkYs$r9XxiOgUK1qVYygtCl89tYB9hCjcgyVup0W9VnG5KWM=",
+    "last_login": "2026-03-02T04:25:31.657Z",
+    "is_superuser": true,
+    "username": "agrandbe",
+    "email": "dr.dre212@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-03-01T23:46:48Z",
+    "first_name": "Andre",
+    "last_name": "Grandberry",
+    "groups": [],
+    "user_permissions": [],
+    "following": [
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$320000$TbGbtC69W4ZjHb3NlLDb5r$Y/7Ve9BGyw0EVmBr5miwwoiBRBCZ5vRasYWMy9Ca1uE=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "bobby27",
+    "email": "bobberbob@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-03-01T23:49:10Z",
+    "first_name": "Robert",
+    "last_name": "Simmons",
+    "groups": [],
+    "user_permissions": [],
+    "following": [
+      2
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$320000$gZ52YzJC7M6I7G5VR6nIUE$mrzl6351zIe3+iiKXK5Z2c79GGXXHZKGASWyI2zJY1Q=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "cindy2shoes",
+    "email": "cindy2shoes@yahoo.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-03-01T23:49:34Z",
+    "first_name": "Cindy",
+    "last_name": "Shoeman",
+    "groups": [],
+    "user_permissions": [],
+    "following": [
+      2
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$320000$eekUfTeYCtJ7nyQhWnwPrV$raFR4osaNrF1TjGWH+64qIjdwr08ZpxStd7SlGEFobU=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "susan123",
+    "email": "susan123@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-03-01T23:59:44Z",
+    "first_name": "Susan",
+    "last_name": "Numbers",
+    "groups": [],
+    "user_permissions": [],
+    "following": [
+      2
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$320000$5Fn5HHiHKQojFzPnUEKoxh$MDhqpZQHNpv02Dw7onZRmvkmUmuY/CmRCGtBjxMiV94=",
+    "last_login": "2026-03-02T04:17:57.141Z",
+    "is_superuser": false,
+    "username": "testboy",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-03-02T04:17:43.972Z",
+    "first_name": "",
+    "last_name": "",
+    "groups": [],
+    "user_permissions": [],
+    "following": []
+  }
+},
+{
+  "model": "reviews.book",
+  "pk": 3,
+  "fields": {
+    "title": "Percy Jackson and the Olympians: The Lightning Thief",
+    "image": "Lightning_Thief_Lv7BlGS.jpg",
+    "description": "Twelve-year-old Percy Jackson is about to be kicked out of boarding school . . . again. No matter how hard he tries, he can't seem to stay out of trouble. But can he really be expected to stand by and watch while a bully picks on his scrawny best friend? Or not defend himself against his pre-algebra teacher when she turns into a monster and tries to kill him? Of course, no one believes Percy about the monster incident; he's not even sure he believes himself.\r\n\r\nUntil the Minotaur chases him to summer camp.\r\n\r\nSuddenly, mythical creatures seem to be walking straight out of the pages of Percy's Greek mythology textbook and into his life. The gods of Mount Olympus, he's coming to realize, are very much alive in the twenty-first century. And worse, he's angered a few of them: Zeus's master lightning bolt has been stolen, and Percy is the prime suspect.\r\n\r\nNow Percy has just ten days to find and return Zeus's stolen property, and bring peace to a warring Mount Olympus. On a daring road trip from their summer camp in New York to the gates of the Underworld in Los Angeles, Percy and his friends–one a satyr and the other the demigod daughter of Athena–will face a host of enemies determined to stop them. To succeed on his quest, Percy will have to do more than catch the true thief: he must come to terms with the father who abandoned him; solve the riddle of the Oracle, which warns him of failure and betrayal by a friend; and unravel a treachery more powerful than the gods themselves.",
+    "created": "2026-03-02T01:22:19.977Z"
+  }
+},
+{
+  "model": "reviews.book",
+  "pk": 4,
+  "fields": {
+    "title": "The Fault in Our Stars",
+    "image": "The_Fault_In_Our_Stars_ikOSdHM.jpg",
+    "description": "Despite the tumor-shrinking medical miracle that has bought her a few years, Hazel has never been anything but terminal, her final chapter inscribed upon diagnosis. But when a gorgeous plot twist named Augustus Waters suddenly appears at Cancer Kid Support Group, Hazel’s story is about to be completely rewritten.\r\n\r\nFrom John Green, #1 bestselling author of The Anthropocene Reviewed and Turtles All the Way Down, The Fault in Our Stars is insightful, bold, irreverent, and raw. It brilliantly explores the funny, thrilling, and tragic business of being alive and in love.",
+    "created": "2026-03-02T03:24:05.795Z"
+  }
+},
+{
+  "model": "reviews.book",
+  "pk": 5,
+  "fields": {
+    "title": "Ikigai",
+    "image": "Ikigai_tRzHeb8.jpg",
+    "description": "According to the Japanese, everyone has an ikigai—a reason for living. And according to the residents of the Japanese village with the world’s longest-living people, finding it is the key to a happier and longer life. Having a strong sense of ikigai—where what you love, what you’re good at, what you can get paid for, and what the world needs all overlap—means that each day is infused with meaning. It’s the reason we get up in the morning. It’s also the reason many Japanese never really retire (in fact there’s no word in Japanese that means retire in the sense it does in English): They remain active and work at what they enjoy, because they’ve found a real purpose in life—the happiness of always being busy.\r\n\r\nIn researching this book, the authors interviewed the residents of the Japanese village with the highest percentage of 100-year-olds—one of the world’s Blue Zones. Ikigai reveals the secrets to their longevity and happiness: how they eat, how they move, how they work, how they foster collaboration and community, and—their best-kept secret—how they find the ikigai that brings satisfaction to their lives. And it provides practical tools to help you discover your own ikigai. Because who doesn’t want to find happiness in every day?",
+    "created": "2026-03-02T03:24:21.184Z"
+  }
+},
+{
+  "model": "reviews.book",
+  "pk": 6,
+  "fields": {
+    "title": "The Sea of Monsters",
+    "image": "seaofmonsters.jpg",
+    "description": "Test book",
+    "created": "2026-03-02T04:21:58.414Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 6,
+  "fields": {
+    "headline": "Pretty Good",
+    "body": "Fast read, good pacing.",
+    "rating": 4,
+    "book": 5,
+    "user": 3,
+    "created": "2026-03-02T03:25:27.932Z",
+    "updated": "2026-03-02T03:25:27.932Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 7,
+  "fields": {
+    "headline": "Not bad",
+    "body": "Interesting idea, a little slow in the middle.",
+    "rating": 3,
+    "book": 4,
+    "user": 3,
+    "created": "2026-03-02T03:26:55.958Z",
+    "updated": "2026-03-02T03:26:55.958Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 8,
+  "fields": {
+    "headline": "Fantastic",
+    "body": "Really enjoyed this one.",
+    "rating": 5,
+    "book": 5,
+    "user": 4,
+    "created": "2026-03-02T03:27:53.035Z",
+    "updated": "2026-03-02T03:27:53.035Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 9,
+  "fields": {
+    "headline": "Solid",
+    "body": "Solid overall, would recommend.",
+    "rating": 4,
+    "book": 4,
+    "user": 4,
+    "created": "2026-03-02T03:28:40.105Z",
+    "updated": "2026-03-02T03:58:52.739Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 10,
+  "fields": {
+    "headline": "Not For Me",
+    "body": "Not my style, but okay.",
+    "rating": 2,
+    "book": 5,
+    "user": 5,
+    "created": "2026-03-02T03:29:12.990Z",
+    "updated": "2026-03-02T03:29:12.990Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 12,
+  "fields": {
+    "headline": "Love It!",
+    "body": "This book changed my life",
+    "rating": 5,
+    "book": 5,
+    "user": 2,
+    "created": "2026-03-02T04:10:22.932Z",
+    "updated": "2026-03-02T04:10:22.932Z"
+  }
+}
+]

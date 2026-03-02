@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="user-search-shell">
+    {% if query %}
+      <h1 class="user-search-title">Users matching '{{ query|upper }}'</h1>
+    {% else %}
+      <h1 class="user-search-title">Find users to follow</h1>
+    {% endif %}
+
+    <form method="get" action="{% url 'users:search' %}" class="d-flex mb-3">
+      <input class="form-control me-2" type="search" name="q" placeholder="Search users by name or username" value="{{ query }}" />
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+
+    {% if results %}
+      <div>
+        {% for item in results %}
+          {% with u=item.user %}
+          <div class="user-search-item d-flex justify-content-between align-items-center">
+            <div>
+              <a href="{% url 'users:profile_detail' u.pk %}" class="user-search-name">
+                {% if u.first_name or u.last_name %}
+                  {{ u.full_name }}
+                {% else %}
+                  {{ u.username }}
+                {% endif %}
+              </a>
+              <div class="small text-muted">{{ item.reviews_count }} reviews</div>
+              <div class="small text-muted">{{ item.followers_count }} followers</div>
+              <div class="small text-muted">{{ item.following_count }} following</div>
+            </div>
+            <div>
+              {% if request.user.is_authenticated and request.user != u %}
+                <form method="post" action="{% url 'users:follow' u.pk %}">{% csrf_token %}
+                  <button class="btn btn-sm btn-outline-primary" type="submit">{% if u.pk in following_ids %}Unfollow{% else %}Follow{% endif %}</button>
+                </form>
+              {% endif %}
+            </div>
+          </div>
+          {% endwith %}
+        {% endfor %}
+      </div>
+    {% else %}
+      {% if query %}
+        <div class="alert alert-warning">No users found for "{{ query }}".</div>
+      {% endif %}
+    {% endif %}
+  </div>
+{% endblock %}

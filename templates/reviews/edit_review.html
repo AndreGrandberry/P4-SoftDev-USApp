@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="review-form-shell">
+    <h1 class="review-form-title">
+      {% if object %}
+        Edit review
+      {% else %}
+        Post a review
+      {% endif %}
+    </h1>
+
+    <div class="review-form-book-summary">
+      <div class="review-form-book-media">
+        {% if book.image %}
+          <img src="{{ book.image.url }}" alt="Cover for {{ book.title }}" class="review-form-book-cover">
+        {% else %}
+          <div class="review-form-book-cover review-form-no-cover">No cover</div>
+        {% endif %}
+      </div>
+      <div class="review-form-book-text">
+        <h2>{{ book.title }}</h2>
+        <p>{{ book.description|truncatechars:420 }}</p>
+      </div>
+    </div>
+
+    <form method="post">
+      {% csrf_token %}
+      {% if form.non_field_errors %}
+        <div class="errors">{{ form.non_field_errors }}</div>
+      {% endif %}
+
+      <p>
+        {{ form.headline.label_tag }}<br>
+        {{ form.headline }}
+        {% if form.headline.errors %}
+          <div class="errors">{{ form.headline.errors }}</div>
+        {% endif %}
+      </p>
+
+      <p>
+        {{ form.rating.label_tag }}<br>
+        {% with current=form.rating.value %}
+          <div class="review-rating-row" role="group" aria-label="Rating selector">
+            <label><input type="radio" name="rating" value="0" {% if current == '0' or current == 0 %}checked{% endif %}> - 0</label>
+            <label><input type="radio" name="rating" value="1" {% if current == '1' or current == 1 %}checked{% endif %}> - 1</label>
+            <label><input type="radio" name="rating" value="2" {% if current == '2' or current == 2 %}checked{% endif %}> - 2</label>
+            <label><input type="radio" name="rating" value="3" {% if current == '3' or current == 3 %}checked{% endif %}> - 3</label>
+            <label><input type="radio" name="rating" value="4" {% if current == '4' or current == 4 %}checked{% endif %}> - 4</label>
+            <label><input type="radio" name="rating" value="5" {% if current == '5' or current == 5 %}checked{% endif %}> - 5</label>
+          </div>
+        {% endwith %}
+        {% if form.rating.errors %}
+          <div class="errors">{{ form.rating.errors }}</div>
+        {% endif %}
+      </p>
+
+      <p>
+        {{ form.body.label_tag }}<br>
+        {{ form.body }}
+        {% if form.body.errors %}
+          <div class="errors">{{ form.body.errors }}</div>
+        {% endif %}
+      </p>
+
+      <div class="review-form-actions">
+        <button class="btn btn-outline-secondary" type="submit">Submit</button>
+        <a href="{% url 'reviews:book_detail' book.pk %}">Cancel</a>
+      </div>
+    </form>
+  </div>
+
+{% endblock %}

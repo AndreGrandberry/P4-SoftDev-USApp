@@ -1,0 +1,86 @@
+{% comment %}Reusable review card used by home and all_reviews{% endcomment %}
+{% if as_border %}
+  <div id="review-{{ review.pk }}" class="review-border mb-3">
+    <p class="card-text mb-1">
+      <small class="text-muted">
+        New review by
+        {% if review.user.first_name or review.user.last_name %}
+          {{ review.user.full_name }}
+        {% else %}
+          {{ review.user.username }}
+        {% endif %}
+        on {{ review.created|date:"M d, Y \\a\\t g:iA" }}
+      </small>
+    </p>
+    <h5 class="mb-1">{{ review.headline }}</h5>
+    <p class="mb-1">
+      <span class="rating-stars" aria-label="Rating: {{ review.rating }} out of 5">
+        {% for i in "12345" %}
+          {% if review.rating >= forloop.counter %}
+            &#9733;
+          {% else %}
+            &#9734;
+          {% endif %}
+        {% endfor %}
+      </span>
+    </p>
+    <p class="mb-2">{{ review.body }}</p>
+    {% if user.is_authenticated and review.user == user %}
+      <div class="mt-2">
+        <a href="{% url 'reviews:edit_review' review.book.pk review.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+        <a href="{% url 'reviews:delete_review' review.book.pk review.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
+      </div>
+    {% endif %}
+  </div>
+{% else %}
+  <div class="card mb-3">
+    <div class="row g-0 align-items-start">
+        <div class="col-auto review-card-image">
+          {% if review.book.image %}
+            <a href="{% url 'reviews:book_detail' review.book.pk %}#review-{{ review.pk }}">
+              <img src="{{ review.book.image.url }}" alt="Cover for {{ review.book.title }}" class="img-fluid review-card-thumb">
+            </a>
+          {% else %}
+            <a href="{% url 'reviews:book_detail' review.book.pk %}#review-{{ review.pk }}">
+              <div class="bg-light d-flex align-items-center justify-content-center no-image">No image</div>
+            </a>
+          {% endif %}
+        </div>
+      <div class="col">
+        <div class="card-body">
+          <h5 class="card-title"><a href="{% url 'reviews:book_detail' review.book.pk %}#review-{{ review.pk }}" class="text-decoration-none text-dark">{{ review.book.title }}</a></h5>
+          <p class="mb-1"><strong>{{ review.headline }}</strong> — <small class="text-muted">{{ review.user.full_name }}</small></p>
+          <p class="mb-1">
+            <span class="rating-stars" aria-label="Rating: {{ review.rating }} out of 5">
+              {% for i in "12345" %}
+                {% if review.rating >= forloop.counter %}
+                  &#9733;
+                {% else %}
+                  &#9734;
+                {% endif %}
+              {% endfor %}
+            </span>
+          </p>
+          <p class="card-text">{{ review.body|truncatechars:300 }}</p>
+          <p class="card-text">
+            <small class="text-muted">
+              New review by
+              {% if review.user.first_name or review.user.last_name %}
+                {{ review.user.full_name }}
+              {% else %}
+                {{ review.user.username }}
+              {% endif %}
+              on {{ review.created|date:"M d, Y \\a\\t g:iA" }}
+            </small>
+          </p>
+          {% if user.is_authenticated and review.user == user %}
+            <div class="mt-2">
+              <a href="{% url 'reviews:edit_review' review.book.pk review.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+              <a href="{% url 'reviews:delete_review' review.book.pk review.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

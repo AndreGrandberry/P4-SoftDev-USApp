@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="create-book-shell">
+    <h1 class="create-book-title">Create a book</h1>
+
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label for="id_title" class="form-label">Title</label>
+        {{ form.title }}
+        {% if form.title.errors %}
+          <div class="text-danger small">{{ form.title.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="mb-3">
+        <label for="id_description" class="form-label">Description</label>
+        {{ form.description }}
+        {% if form.description.errors %}
+          <div class="text-danger small">{{ form.description.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="mb-3">
+        <label for="id_image" class="form-label">Cover image (optional)</label>
+        {{ form.image }}
+        {% if form.image.errors %}
+          <div class="text-danger small">{{ form.image.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="create-book-actions">
+        <a href="/" class="btn btn-link">Cancel</a>
+        <button type="submit" class="btn btn-outline-secondary">Submit</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

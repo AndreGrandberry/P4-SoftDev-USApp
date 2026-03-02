@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="feed-shell">
+    <h1 class="feed-title">
+      {% if user.is_authenticated %}
+        Reviews by users you follow
+      {% else %}
+        Recent reviews
+      {% endif %}
+    </h1>
+
+    {% if reviews %}
+      <div class="feed-list">
+        {% for review in reviews %}
+          {% include 'reviews/review_card.html' %}
+        {% endfor %}
+      </div>
+      <div class="feed-footer">
+        <a class="btn btn-outline-secondary" href="{% url 'reviews:reviews' %}">See all recent reviews</a>
+      </div>
+    {% else %}
+      <div class="alert alert-info">No reviews yet.</div>
+    {% endif %}
+  </div>
+
+{% endblock %}
